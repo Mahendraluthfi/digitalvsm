@@ -16,6 +16,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo base_url() ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 <body class="sidebar-mini layout-navbar-fixed layout-fixed text-sm">
 <div class="wrapper">
@@ -52,11 +54,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <i class="fas fa-cog"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">          
+          <a href="<?php echo base_url('rules') ?>" class="dropdown-item">
+            <i class="fas fa-cog"></i> Rules
+          </a>
           <a href="#" class="dropdown-item">
             <i class="fas fa-key"></i> Change Password
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          <a href="<?php echo base_url('login/logout') ?>" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
       </li>
     </ul>
@@ -80,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="<?php echo base_url() ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce <br><small>MOS</small></a>
+          <a href="#" class="d-block"><?php echo $this->session->userdata('vsm_name'); ?> <br><small><?php echo $this->session->userdata('vsm_department'); ?></small></a>
         </div>
       </div>
 
@@ -88,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-compact" data-widget="treeview" role="menu" data-accordion="false">         
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="<?php echo base_url('welcome') ?>" class="nav-link <?php if($this->uri->segment(1) == "welcome" || $this->uri->segment(1) == ""){echo "active";} ?>">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -96,11 +101,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('users') ?>" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Users
-              </p>
+            <a href="<?php echo base_url('main') ?>" class="nav-link <?php if($this->uri->segment(1) == "main"){echo "active";} ?>">
+              <i class="nav-icon fas fa-table"></i><p>Main Information</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('process') ?>" class="nav-link <?php if($this->uri->segment(1) == "process"){echo "active";} ?>">
+              <i class="nav-icon fas fa-tasks"></i><p>Process & Inventory</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('information') ?>" class="nav-link <?php if($this->uri->segment(1) == "information"){echo "active";} ?>" class="nav-link">
+              <i class="nav-icon fas fa-info"></i><p>Information</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('users') ?>" class="nav-link <?php if($this->uri->segment(1) == "users"){echo "active";} ?>">
+              <i class="nav-icon fas fa-users"></i><p>Users</p>
             </a>
           </li>
         </ul>
@@ -114,36 +131,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <div class="content-wrapper">
     <?php $this->load->view($content); ?>
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <!-- <aside class="control-sidebar control-sidebar-dark">
-    Control sidebar content goes here
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside> -->
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->  
+  
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
+  
 <script src="<?php echo base_url() ?>plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
 <script src="<?php echo base_url() ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url() ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url() ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo base_url() ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>  
 <script src="<?php echo base_url() ?>dist/js/adminlte.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/select2/js/select2.full.min.js"></script>
 <script>
-   $("#example1").DataTable();
+    $("#example1").DataTable();
+    $('.select2').select2();
+    $( document ).ready(function() {   
+      $('.btnR').tooltip();
+      $('.btnX').tooltip();
+    });
 </script>
 
 </body>

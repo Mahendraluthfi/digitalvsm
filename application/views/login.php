@@ -34,9 +34,9 @@
       <h4 class="text-center">Digital VSM</h4>
       </p>
 
-      <?php echo form_open('url'); ?>
+      <?php echo form_open('login/submit'); ?>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="EPF Number">
+          <input type="text" name="epf" required="" class="form-control" placeholder="EPF Number" autofocus="">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-id-card"></span>
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="password" required="" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -54,6 +54,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
+            <?php echo $this->session->flashdata('msg'); ?>
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->

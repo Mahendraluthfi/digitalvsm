@@ -6,7 +6,9 @@ class Welcome extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		
+		if (empty($this->session->userdata('vsm_epf'))) {
+			redirect('login','refresh');
+		}
 	}
 	
 	public function index()
@@ -14,4 +16,5 @@ class Welcome extends CI_Controller {
 		$data['content'] = 'dashboard';
 		$this->load->view('index', $data);
 	}
+	
 }
