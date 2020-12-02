@@ -611,6 +611,46 @@ border-top: 1px solid black;
                 </div>
             </div>
             <div class="col-md-3 col-lg-3" style="font-size: 14px; padding: 5px;">
+                <div class="card bg-light">
+                  <div class="card-header text-center"><h6>Main Information</h6></div>
+                  <div class="card-body">
+                        <form id="form">
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Style Number</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo $main->style_no ?></label>                            
+                        </div>                            
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Product</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo $main->customer ?></label>                            
+                        </div>                            
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Customer</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo $main->product ?></label>                            
+                        </div> 
+                         <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Cons./pcs</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo $main->cons ?></label>                            
+                        </div> 
+                         <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Cust Demand</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo $main->cust_demand ?></label>                            
+                        </div>                          
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Takt Time</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo $main->takttime ?></label>                            
+                        </div> 
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">PSD</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo date('d M Y', strtotime($main->psd)) ?></label>                            
+                        </div>                            
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">PED</label>
+                            <label class="col-sm-6 col-form-label text-info"><?php echo date('d M Y', strtotime($main->ped)) ?></label>                            
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3" style="font-size: 14px; padding: 5px;">
                 <div class="alert alert-info">                
                         <div class="form-group row">
                             <label class="col-7">Customer Demand</label>
@@ -625,8 +665,6 @@ border-top: 1px solid black;
                             <label class="col-5">: <b><?php echo $main->takttime ?> sec/day</b></label>
                         </div>                    
                 </div>  
-            </div>
-            <div class="col-md-3 col-lg-3" style="font-size: 14px; padding: 5px;">
                 <div class="alert alert-success">                                
                         <div class="form-group row">
                             <label class="col-5">VA Time</label>
@@ -636,12 +674,12 @@ border-top: 1px solid black;
                             <label class="col-5">DTD</label>
                             <label class="col-7">: <?php echo number_format($blue, 2) ?> Days</label>
                         </div>            
-                        <div class="form-group row">
+                        <div class="form-group row text-warning">
                             <label class="col-5">VA %</label>
                             <label class="col-7">: <b><?php echo number_format($green/$blue,8) ?> %</b></label>
                         </div>                    
                 </div>  
-            </div>   
+            </div>    
             <div class="col-md-2 col-lg-2" style="font-size: 14px; padding: 5px;">
                 <div class="alert alert-info">
                     <div class="text-center">
