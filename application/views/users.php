@@ -31,6 +31,7 @@
                     </h3>                
                 </div>
                 <div class="float-right">
+                    <a href="<?php echo base_url('users/item') ?>" class="btn btn-success btn-xs"><i class="fas fa-info-circle"></i> Information Item</a>
                     <button type="button" class="btn btn-primary btn-xs" onclick="add()"><i class="fas fa-plus"></i> Add</button>
                 </div>
               </div>
@@ -98,14 +99,16 @@
                             <option value="MOS">MOS</option>
                             <option value="PCU">PCU</option>
                             <option value="COMMERCIAL">COMMERCIAL</option>
+                            <option value="LOGISTIC">LOGISTIC</option>
                             <option value="PLANNING">PLANNING</option>
                             <option value="RECEIVING">RECEIVING</option>
+                            <option value="QUALITY">QUALITY</option>                            
                             <option value="LAB">LAB</option>
                             <option value="RAW MATERIAL">RAW MATERIAL</option>
                             <option value="CUTTING">CUTTING</option>
                             <option value="CAD">CAD</option>
                             <option value="PRODUCTION">PRODUCTION</option>
-                            <option value="FG">FG</option>
+                            <option value="FINISHED GOOD">FINISHED GOOD</option>
                             <option value="TECHNICAL">TECHNICAL</option>
                             <option value="MDS">MDS</option>
                             <option value="IE-WS">IE-WS</option>
@@ -158,11 +161,21 @@
                             <option value="MOS">MOS</option>
                             <option value="PCU">PCU</option>
                             <option value="COMMERCIAL">COMMERCIAL</option>
+                            <option value="LOGISTIC">LOGISTIC</option>                            
                             <option value="PLANNING">PLANNING</option>
                             <option value="RECEIVING">RECEIVING</option>
+                            <option value="QUALITY">QUALITY</option>
                             <option value="LAB">LAB</option>
                             <option value="RAW MATERIAL">RAW MATERIAL</option>
                             <option value="CUTTING">CUTTING</option>
+                            <option value="CAD">CAD</option>
+                            <option value="PRODUCTION">PRODUCTION</option>
+                            <option value="FINISHED GOOD">FINISHED GOOD</option>
+                            <option value="TECHNICAL">TECHNICAL</option>
+                            <option value="MDS">MDS</option>
+                            <option value="IE-WS">IE-WS</option>
+                            <option value="MECHANIC">MECHANIC</option>
+                            <option value="SUPPLIER">SUPPLIER</option>
                         </select>
                     <p></p>
                     <span class="text-danger"><i>* EPF Number is current default password.</i></span>

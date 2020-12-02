@@ -17,7 +17,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo base_url() ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">  
+  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/summernote/summernote-bs4.css">
+  
 </head>
 <body class="sidebar-mini layout-navbar-fixed layout-fixed text-sm">
 <div class="wrapper">
@@ -53,11 +57,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fas fa-cog"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">          
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">  
+          <?php if($this->session->userdata('vsm_department') == "MOS"){ ?>        
           <a href="<?php echo base_url('rules') ?>" class="dropdown-item">
             <i class="fas fa-cog"></i> Rules
           </a>
-          <a href="#" class="dropdown-item">
+          <a href="<?php echo base_url('rules/embed') ?>" class="dropdown-item">
+            <i class="fas fa-map"></i> Embed
+          </a>
+          <?php } ?>
+          <a href="<?php echo base_url('config') ?>" class="dropdown-item">
             <i class="fas fa-key"></i> Change Password
           </a>
           <div class="dropdown-divider"></div>
@@ -71,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-info elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?php echo base_url() ?>" class="brand-link">
       <img src="<?php echo base_url() ?>dist/img/icon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">MAS Sumbiri Digital VSM</span>
@@ -100,9 +109,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <?php if($this->session->userdata('vsm_department') == "MOS"){ ?>                  
           <li class="nav-item">
             <a href="<?php echo base_url('main') ?>" class="nav-link <?php if($this->uri->segment(1) == "main"){echo "active";} ?>">
               <i class="nav-icon fas fa-table"></i><p>Main Information</p>
+            </a>
+          </li>
+          <?php } ?>
+          <li class="nav-item">
+            <a href="<?php echo base_url('preqco') ?>" class="nav-link <?php if($this->uri->segment(1) == "preqco"){echo "active";} ?>">
+              <i class="nav-icon fas fa-random"></i><p>Extended QCO</p>
             </a>
           </li>
           <li class="nav-item">
@@ -115,11 +131,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-info"></i><p>Information</p>
             </a>
           </li>
+          <?php if($this->session->userdata('vsm_department') == "MOS"){ ?>                  
           <li class="nav-item">
             <a href="<?php echo base_url('users') ?>" class="nav-link <?php if($this->uri->segment(1) == "users"){echo "active";} ?>">
               <i class="nav-icon fas fa-users"></i><p>Users</p>
             </a>
           </li>
+          <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -142,13 +160,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="<?php echo base_url() ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>  
 <script src="<?php echo base_url() ?>dist/js/adminlte.min.js"></script>
 <script src="<?php echo base_url() ?>plugins/select2/js/select2.full.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="<?php echo base_url() ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/toastr/toastr.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/summernote/summernote-bs4.min.js"></script>
+
 <script>
+    $('.textarea-summernote').summernote({
+         toolbar: [
+          // [groupName, [list of button]]          
+          ['para', ['ol']],
+        ]
+    });
+
     $("#example1").DataTable();
+    $('#example').DataTable({
+      "searching": false,
+      "info" :false,
+      "lengthChange": false
+    });    
+
     $('.select2').select2();
     $( document ).ready(function() {   
       $('.btnR').tooltip();
       $('.btnX').tooltip();
     });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+    
+    <?php echo $this->session->flashdata('msg'); ?>
+    
+      
+    $(window).on('hashchange', function(e){
+        var hash = window.location.hash;
+        var link = hash.replace("#", "");
+        openfunction(link);
+    });
+
+    function openfunction(e) {        
+        $('#modal-'+e).modal('show');            
+        
+    }
+    
+
+  
 </script>
 
 </body>

@@ -33,7 +33,7 @@
               </div>
               <div class="card-body">
                   <div class="row">
-                      <div class="col-md-7 col-lg-7">
+                      <div class="col-md-9 col-lg-9">
                             <h5>Process Name : <?php echo $get->point_name ?></h5>
                             <h5>Style Number : <?php echo $main->style_no ?></h5>
                           <table class="table table-condensed table-sm">
@@ -41,8 +41,8 @@
                                   <tr class="bg-secondary">
                                       <th width="1%">#</th>
                                       <th>Data Element</th>
-                                      <th>Figure</th>
-                                      <th></th>
+                                      <th width="20%">Figure</th>
+                                      <th width="50%">Instructions</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -56,10 +56,8 @@
                                               <option value="Single" <?php if($proc->input1 == "Single"){echo "selected=''";} ?>>Single</option>
                                               <option value="Batch" <?php if($proc->input1 == "Batch"){echo "selected=''";} ?>>Batch</option>
                                           </select>
-                                      </td>
-                                      <td>
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="How the process release the end outcome -Single Pc or Batch form"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      </td> 
+                                      <td class="bg-light"><i><?php echo $ins->input1 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td>2</td>
@@ -67,9 +65,7 @@
                                       <td>
                                           <input type="number" min="0" step="0.001" required="" class="form-control form-control-sm text-right" name="input2" value="<?php echo $proc->input2 ?>" onfocusout="bin4()">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="How many full cycles you have observed. Go for more cycles to get accurate info."><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input2 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td>3</td>
@@ -77,9 +73,7 @@
                                       <td>
                                           <input type="number" min="0" step="0.001" required="" class="form-control form-control-sm text-right" name="input3" value="<?php echo $proc->input3 ?>" onfocusout="bin4()">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="You need to observe full cycle from start to end with disturbances. E.g. Time for min of 2 full docket laying time"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input3 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td>4</td>
@@ -87,9 +81,7 @@
                                       <td>
                                           <input type="text" readonly="" class="form-control form-control-sm text-right" name="input4" value="<?php echo $proc->input4 ?>">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No. 3/ No. 2"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input4 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td>5</td>
@@ -97,9 +89,7 @@
                                       <td>
                                           <input type="number" min="0" step="0.001" class="form-control form-control-sm text-right" name="input5" value="<?php echo $proc->input5 ?>" required="" onfocusout="bin6()">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="Consider how much of full garments were produced during the observed time. Specially in operational area."><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input5 ?></i></td>                                     
                                   </tr>
                                    <tr>
                                       <td>6</td>
@@ -107,9 +97,7 @@
                                       <td>
                                           <input type="text" readonly="" class="form-control form-control-sm text-right" name="input6" value="<?php echo $proc->input6 ?>">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No. 4/ No. 5"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input6 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td colspan="3" class="bg-secondary"></td>
@@ -120,9 +108,7 @@
                                       <td>
                                           <input type="number" min="0" step="0.001" required="" class="form-control form-control-sm text-right" name="input7" value="<?php echo $proc->input7 ?>" onfocusout="bin8()">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No of Similar operations which were allocated for identified product family. It may be a portion of a process -0.5"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input7 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td>8</td>
@@ -130,9 +116,7 @@
                                       <td>
                                           <input type="text" readonly="" class="form-control form-control-sm text-right" name="input8" value="<?php echo $proc->input8 ?>">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No. 6/ No. 7"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input8 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td colspan="3" class="bg-secondary"></td>
@@ -142,45 +126,39 @@
                                       <td>Down time % (Out of TT clock hrs.)</td>
                                       <td>
                                           <div class="input-group input-group-sm">
-                                              <input type="number" min="0" step="0.1" required="" class="form-control form-control-sm text-right" name="input9" value="<?php echo $proc->input9 ?>">
+                                              <input type="number" min="0" step="0.01" required="" class="form-control form-control-sm text-right" name="input9" value="<?php echo $proc->input9 ?>">
                                               <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                               </div>
                                             </div>
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="[Total downtime reported / Total working hrs.]*100"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input9 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td>8</td>
                                       <td>FTT % (First time through)</td>
                                       <td>
                                           <div class="input-group input-group-sm">
-                                              <input type="number" min="0" step="0.1" required="" name="input10" value="<?php echo $proc->input10 ?>" class="form-control form-control-sm text-right">
+                                              <input type="number" min="0" step="0.01" required="" name="input10" value="<?php echo $proc->input10 ?>" class="form-control form-control-sm text-right">
                                               <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                               </div>
                                             </div>
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="Avg FTT %reported during last two months"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input10 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td>9</td>
                                       <td>QCO Down time %(out of TT clock hrs.)</td>
                                       <td>
                                           <div class="input-group input-group-sm">
-                                              <input type="number" min="0" step="0.1" required="" name="input11" value="<?php echo $proc->input11 ?>" class="form-control form-control-sm text-right">
+                                              <input type="number" min="0" step="0.01" required="" name="input11" value="<?php echo $proc->input11 ?>" class="form-control form-control-sm text-right">
                                               <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                               </div>
                                             </div>
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="[(Time laps from one cycle end to next cycle start * no. of avg cycles)/Total working hrs.]*100"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input11 ?></i></td>                                     
                                   </tr>
                                   <tr>
                                       <td colspan="3" class="bg-secondary"></td>
@@ -191,15 +169,34 @@
                                       <td>
                                           <input type="number" min="0" required="" class="form-control form-control-sm text-right" name="input12" value="<?php echo $proc->input12 ?>">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No of people allocated to identified process. If shared please indicate the % of allocation- e.g. 1.5 people"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input12 ?></i></td>                                     
                                   </tr>
                               </tbody>
                           </table>
                            <button type="submit" class="btn btn-primary">Save</button>
                           <a href="<?php echo base_url('process/view/'.$this->uri->segment(3).'/'.$this->uri->segment(4)) ?>" class="btn btn-secondary">Back</a>
                           <?php echo form_close(); ?>
+                      </div>
+                      <div class="col-md-3 col-lg-3">
+                          <div class="alert alert-light">
+                              <h6>Main Information</h6><hr class="bg-dark">
+                              <div class="form-group">
+                                <label>Style</label><br>
+                                <span class="form-control-static"><?php echo $main->style_no ?></span>
+                              </div>
+                               <div class="form-group">
+                                <label>Avg Consumption/pcs</label><br>
+                                <span class="form-control-static"><?php echo $main->cons ?></span>
+                              </div>
+                              <div class="form-group">
+                                <label>Takt Time</label><br>
+                                <span class="form-control-static"><?php echo $main->takttime ?> second</span>
+                              </div>
+                               <div class="form-group">
+                                <label>Customer Demand /day</label><br>
+                                <span class="form-control-static"><?php echo $main->cust_demand ?></span>
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -220,7 +217,7 @@
     }
 
     function bin6() {
-        var sub1 = $('[name="input4"]').val();
+        var sub1 = $('[name="input3"]').val();
         var sub2 = $('[name="input5"]').val();
         var hasil = sub1 / sub2;
         $('[name="input6"]').val(parseFloat(hasil).toFixed(2));         
@@ -231,6 +228,6 @@
         var sub1 = $('[name="input6"]').val();
         var sub2 = $('[name="input7"]').val();
         var hasil = sub1 / sub2;
-        $('[name="input8"]').val(hasil);                
+        $('[name="input8"]').val(parseFloat(hasil).toFixed(2));                
     }
 </script>

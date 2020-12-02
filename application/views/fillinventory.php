@@ -37,7 +37,7 @@
               </div>
               <div class="card-body">
                   <div class="row">
-                      <div class="col-md-7 col-lg-7">
+                      <div class="col-md-9 col-lg-9">
                             <h5>Inventory Point : <?php echo $get->point_name ?></h5>
                             <h5>Style Number : <?php echo $main->style_no ?></h5>
                           <table class="table table-condensed table-sm">
@@ -45,8 +45,8 @@
                                   <tr class="bg-secondary">
                                       <th width="1%">#</th>
                                       <th>Data Element</th>
-                                      <th>Figure</th>
-                                      <th></th>
+                                      <th width="30%">Figure</th>
+                                      <th width="40%">Instructions</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -62,9 +62,7 @@
                                               </div>
                                             </div>
                                       </td>
-                                      <td>
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="How much of inventory stagnated - Rolls/ Panels/Pcs"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input1 ?></i></td>
                                   </tr>
                                   <tr>
                                       <td>2</td>
@@ -77,9 +75,7 @@
                                               </div>
                                             </div>
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="% Portion of the selected product family. E.g. 60% out of total stock"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input2 ?></i></td>
                                   </tr>
                                   <tr>
                                       <td>3</td>
@@ -87,9 +83,7 @@
                                       <td>
                                           <input type="text" readonly="" value="<?php echo $inv->input3 ?>" name="input3" class="form-control form-control-sm text-right">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No. 01 * No. 02"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input3 ?></i></td>
                                   </tr>
                                   <tr>
                                       <td colspan="3" class="bg-secondary"></td>
@@ -100,9 +94,7 @@
                                       <td>
                                           <input type="number" required="" value="<?php echo $inv->input4 ?>" min="0" step="0.0001" class="form-control form-control-sm text-right" name="input4" onfocusout="bin4()">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="Fabric consumption of the product"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input4 ?></i></td>
                                   </tr>
                                   <tr>
                                       <td>5</td>
@@ -110,9 +102,7 @@
                                       <td>
                                           <input type="text" readonly="" value="<?php echo $inv->input5 ?>" class="form-control form-control-sm text-right" name="input5">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No. 03/ No. 04"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input5 ?></i></td>
                                   </tr>
                                    <tr>
                                       <td>6</td>
@@ -120,9 +110,7 @@
                                       <td>
                                           <input type="number" required="" value="<?php echo $inv->input6 ?>" min="0" step="0.0001" class="form-control form-control-sm text-right" name="input6" onfocusout="bin7()">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="If plant have other inventory points, specify thos, e.g line end FG stock"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input6 ?></i></td>
                                   </tr>
                                   
                                   <tr>
@@ -131,9 +119,7 @@
                                       <td>
                                           <input type="text" readonly="" value="<?php echo $inv->input7 ?>" class="form-control form-control-sm text-right" name="input7">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No. 05 * No. 06"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input7 ?></i></td>
                                   </tr>
                                   <tr>
                                       <td colspan="3" class="bg-secondary"></td>
@@ -142,11 +128,9 @@
                                       <td>8</td>
                                       <td>Day production output in selected family</td>
                                       <td>
-                                          <input type="number" required="" min="0" value="<?php echo $inv->input8 ?>" step="0.0001" class="form-control form-control-sm text-right" name="input8" onfocusout="bin9()">
+                                          <input type="number" required="" min="0" value="<?php echo $main->cust_demand ?>" readonly="" class="form-control form-control-sm text-right" name="input8" onfocusout="bin9()">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="Total average garments products -Avg of Last & next month"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input8 ?></i></td>
                                   </tr>
                                   <tr>
                                       <td>9</td>
@@ -154,9 +138,7 @@
                                       <td>
                                          <input type="text" readonly="" value="<?php echo $inv->input9 ?>" class="form-control form-control-sm text-right" name="input9">
                                       </td>
-                                      <td>                                          
-                                          <button class="btn btn-xs btn-info btnR" data-toggle="tooltip" data-placement="right" title="No. 07/ No. 08"><i class="fas fa-info"></i></button>
-                                      </td>
+                                      <td class="bg-light"><i><?php echo $ins->input9 ?></i></td>
                                   </tr>
                                   
                               </tbody>
@@ -164,6 +146,27 @@
                           <button type="submit" class="btn btn-primary">Save</button>
                           <a href="<?php echo base_url('process/view/'.$this->uri->segment(3).'/'.$this->uri->segment(4)) ?>" class="btn btn-secondary">Back</a>
                           <?php echo form_close(); ?>
+                      </div>
+                      <div class="col-md-3 col-lg-3">
+                          <div class="alert alert-light">
+                              <h6>Main Information</h6><hr class="bg-dark">
+                              <div class="form-group">
+                                <label>Style</label><br>
+                                <span class="form-control-static"><?php echo $main->style_no ?></span>
+                              </div>
+                               <div class="form-group">
+                                <label>Avg Consumption/pcs</label><br>
+                                <span class="form-control-static"><?php echo $main->cons ?></span>
+                              </div>
+                              <div class="form-group">
+                                <label>Takt Time</label><br>
+                                <span class="form-control-static"><?php echo $main->takttime ?> second</span>
+                              </div>
+                               <div class="form-group">
+                                <label>Customer Demand /day</label><br>
+                                <span class="form-control-static"><?php echo $main->cust_demand ?></span>
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>

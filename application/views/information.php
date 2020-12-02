@@ -40,21 +40,23 @@
                         <th>Product/Customer</th>
                         <th>Consumption/pcs</th>
                         <th>Takt Time</th>
-                        <th>Customer Demand</th>
-                        <th>Available Time</th>
+                        <th>Customer Demand</th>                        
+                        <th>PSD</th>                        
+                        <th>PED</th>                        
                         <th>#</th>
                       </tr>
                   </thead>
                   <tbody>
                       <?php $no=1; foreach ($get as $data) { ?>
                         <tr>
-                            <td><?php echo $no++ ?></td>
+                           <td><?php echo $no++ ?></td>
                             <td><?php echo $data->style_no ?></td>
-                            <td><?php echo $data->product.'/'.$data->customer ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?php echo $data->product.' / '.$data->customer ?></td>
+                            <td><?php echo $data->cons ?></td>
+                            <td><?php echo $data->takttime ?></td>
+                            <td><?php echo $data->cust_demand ?></td>
+                            <td><?php echo date('d-M-Y', strtotime($data->psd)) ?></td>
+                            <td><?php echo date('d-M-Y', strtotime($data->ped)) ?></td>
                             <td>
                               <a href="<?php echo base_url('information/add/'.$data->id) ?>" class="btn btn-xs btn-primary"><i class="fas fa-sign"></i> Add Info</a>
                             </td>

@@ -47,12 +47,13 @@
                                 <option value="COMMERCIAL">COMMERCIAL</option>
                                 <option value="PLANNING">PLANNING</option>
                                 <option value="RECEIVING">RECEIVING</option>
+                                <option value="QUALITY">QUALITY</option>                                
                                 <option value="LAB">LAB</option>
                                 <option value="RAW MATERIAL">RAW MATERIAL</option>
                                 <option value="CUTTING">CUTTING</option>
                                 <option value="CAD">CAD</option>
                                 <option value="PRODUCTION">PRODUCTION</option>
-                                <option value="FG">FG</option>
+                                <option value="FINISHED GOOD">FINISHED GOOD</option>
                                 <option value="TECHNICAL">TECHNICAL</option>
                                 <option value="MDS">MDS</option>
                                 <option value="IE-WS">IE-WS</option>
@@ -61,7 +62,7 @@
                             </select>
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputPassword1">Type Form</label>
+                            <label for="exampleInputPassword1">Form Type</label>
                             <select name="type" class="form-control" required="">
                                 <option value="PROCESS">PROCESS</option>
                                 <option value="INVENTORY">INVENTORY</option>
@@ -72,11 +73,16 @@
                             <label for="exampleInputFile">Point Name</label>
                             <input type="text" class="form-control" name="point_name" placeholder="Point Name" required="">
                           </div>
+                          <div class="form-group">
+                            <label for="exampleInputFile">Sequence</label>
+                            <input type="number" min="0" class="form-control" name="seq" placeholder="No of Sequence" required="">
+                          </div>
                           <button type="submit" class="btn btn-primary btn-save">Save</button> 
                           <span class="cancel_edit">
                               
                           </span>                       
-                        <?php echo form_close(); ?>
+                        <?php echo form_close(); ?><br>
+                        <?php echo $this->session->flashdata('msg'); ?>
                     </div>
                     <div class="col-md-1 col-lg-1"></div>
                     <div class="col-md-8 col-lg-8">
@@ -85,8 +91,9 @@
                                 <tr>
                                     <th width="1%">No</th>
                                     <th>Entity</th>
-                                    <th>Type Form</th>
+                                    <th>Form Type</th>
                                     <th>Point Name</th>
+                                    <th>Seq.</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
@@ -97,7 +104,9 @@
                                     <td><?php echo $data->department ?></td>
                                     <td><?php echo $data->type ?></td>
                                     <td><?php echo $data->point_name ?></td>
+                                    <td><?php echo $data->seq ?></td>
                                     <td>
+                                        <a href="<?php echo base_url('rules/instructions/'.$data->id) ?>" class="btn btn-success btn-xs"><i class="fas fa-info"></i></a>
                                         <button type="button" onclick="edit('<?php echo $data->id ?>')" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i></button>
                                         <a href="<?php echo base_url('rules/delete/'.$data->id) ?>" class="btn btn-xs btn-danger"><i class="fas fa-trash" onclick="return confirm('Are you sure ?')"></i></a>
                                     </td>
@@ -126,6 +135,7 @@
                 $('[name="type"]').val(data.type);
                 $('[name="type"]').trigger('change');
                 $('[name="point_name"]').val(data.point_name);
+                $('[name="seq"]').val(data.seq);
                 $('[name="department"]').val(data.department);
                 $('[name="department"]').trigger('change');
                 $('.frmrules').attr('action','<?php echo base_url('rules/edit/') ?>'+id);            

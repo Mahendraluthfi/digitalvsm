@@ -38,31 +38,29 @@
                     <h5>Add Information</h5><hr>                    
                         <?php echo form_open('information/save/'.$get->id, array('class' => 'frminfo')); ?>                        
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Information that your department share</label>
-                            <input type="text" required="" class="form-control form-control-sm" name="information" placeholder="Information that your department share">
+                            <label for="exampleInputPassword1">From</label>
+                            <select name="from_who" class="form-control select2" required="">
+                                <option value="">Choose</option>
+                                <option value="<?php echo $this->session->userdata('vsm_department'); ?>"><?php echo $this->session->userdata('vsm_department'); ?></option>
+                                 <?php foreach ($from as $data) { ?>
+                                  <option value="<?php echo $data->item ?>"><?php echo $data->item ?></option>
+                                <?php } ?>
+                            </select>                            
                           </div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">To</label>
                             <select name="to_who" class="form-control select2" required="">
                                 <option value="">Choose</option>
-                                <option value="DARWIN">DARWIN</option>
-                                <option value="PCU">PCU</option>
-                                <option value="COMMERCIAL">COMMERCIAL</option>
-                                <option value="PLANNING">PLANNING</option>
-                                <option value="RECEIVING">RECEIVING</option>
-                                <option value="LAB">LAB</option>
-                                <option value="RAW MATERIAL">RAW MATERIAL</option>
-                                <option value="CUTTING">CUTTING</option>
-                                <option value="CAD">CAD</option>
-                                <option value="PRODUCTION">PRODUCTION</option>
-                                <option value="FG">FG</option>
-                                <option value="TECHNICAL">TECHNICAL</option>
-                                <option value="MDS">MDS</option>
-                                <option value="IE-WS">IE-WS</option>
-                                <option value="MECHANIC">MECHANIC</option>
-                                <option value="SUPPLIER">SUPPLIER</option>
+                                <?php foreach ($item as $data) { ?>
+                                  <option value="<?php echo $data->item ?>"><?php echo $data->item ?></option>
+                                <?php } ?>
                             </select>                            
                           </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Information</label>
+                            <input type="text" required="" class="form-control form-control-sm" name="information" placeholder="Information that you want to submit">
+                          </div>
+                          
                           <div class="form-group">
                             <label for="exampleInputFile">Type of Information</label>
                             <select name="type" class="form-control form-control-sm">
@@ -83,16 +81,18 @@
                     <table class="table table-bordered table-striped table-sm" id="example1">
                         <thead>
                             <tr>
+                                <th>From</th>
                                 <th>To</th>
                                 <th>Information</th>
                                 <th>Type</th>
                                 <th>Lead Time</th>
-                                <th>#</th>
+                                <th width="10%">#</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($info as $data) { ?>
                             <tr>
+                                <td><?php echo $data->from_who ?></td>
                                 <td><?php echo $data->to_who ?></td>
                                 <td><?php echo $data->information ?></td>
                                 <td><?php echo $data->type ?></td>
@@ -105,7 +105,7 @@
                             <?php } ?>
                         </tbody>
                         <tr>
-                            <td colspan="4"><b>Total Lead Time : <?php echo round($totaltime->total, 3) ?> Days</b></td>
+                            <td colspan="5"><b>Total Lead Time : <?php echo round($totaltime->total, 3) ?> Days</b></td>
                             <td></td>
                             
                         </tr>
@@ -134,6 +134,8 @@
                 $('[name="lead_time"]').val(data.lead_time);
                 $('[name="to_who"]').val(data.to_who);
                 $('[name="to_who"]').trigger('change');
+                $('[name="from_who"]').val(data.from_who);
+                $('[name="from_who"]').trigger('change');
                 $('.frminfo').attr('action','<?php echo base_url('information/edit/') ?>'+id+'/'+style);            
                 $('.btn-save').text('Edit');                   
                 $('.cancel_edit').html('<button type="button" onclick="cancel(\''+style+'\')" class="btn btn-danger btn-save">Cancel</button>');         
@@ -147,8 +149,10 @@
     function cancel(style) {
         $('[name="to_who"]').val('');
         $('[name="to_who"]').trigger('change');
+        $('[name="from_who"]').val('');
+        $('[name="from_who"]').trigger('change');
         $('.frminfo')[0].reset();
-        $('.frminfo').attr('action','<?php echo base_url('rules/save/') ?>'+style);            
+        $('.frminfo').attr('action','<?php echo base_url('information/save/') ?>'+style);            
         $('.btn-save').text('Save');                   
         $('.cancel_edit').html(''); 
         

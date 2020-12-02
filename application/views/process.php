@@ -40,8 +40,9 @@
                         <th>Product/Customer</th>
                         <th>Consumption/pcs</th>
                         <th>Takt Time</th>
-                        <th>Customer Demand</th>
-                        <th>Available Time</th>
+                        <th>Customer Demand</th>                        
+                        <th>PSD</th>                        
+                        <th>PED</th>                        
                         <th>#</th>
                       </tr>
                   </thead>
@@ -50,17 +51,21 @@
                         <tr>
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $data->style_no ?></td>
-                            <td><?php echo $data->product.'/'.$data->customer ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?php echo $data->product.' / '.$data->customer ?></td>
+                            <td><?php echo $data->cons ?></td>
+                            <td><?php echo $data->takttime ?></td>
+                            <td><?php echo $data->cust_demand ?></td>
+                            <td><?php echo date('d-M-Y', strtotime($data->psd)) ?></td>
+                            <td><?php echo date('d-M-Y', strtotime($data->ped)) ?></td>
                             <td>
                                 <?php foreach ($getbutton as $datax) { ?>
                                 <button type="button" class="btn btn-xs btn-info" onclick="showing('<?php echo $datax->type ?>','<?php echo $data->id ?>')"><?php echo ucfirst(strtolower($datax->type)) ?></button>
                                 <?php } ?>
-                                <button type="button" class="btn btn-xs btn-success">Overview</button>
-
+                                <?php if($this->session->userdata('vsm_department') == "MOS"){ ?>
+                                <a href="<?php echo base_url('process/overview/'.$data->id) ?>" class="btn btn-xs btn-success">Overview</a>
+                                <?php }else{ ?>
+                                <a href="<?php echo base_url('process/review/'.$data->id) ?>" class="btn btn-xs btn-success">Overview</a>
+                                <?php } ?>
                             </td>
                         </tr>
                       <?php } ?>

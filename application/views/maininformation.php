@@ -43,8 +43,9 @@
                         <th>Product/Customer</th>
                         <th>Consumption/pcs</th>
                         <th>Takt Time</th>
-                        <th>Customer Demand</th>
-                        <th>Available Time</th>
+                        <th>Customer Demand</th>                        
+                        <th>PSD</th>                        
+                        <th>PED</th>                        
                         <th>#</th>
                       </tr>
                   </thead>
@@ -53,14 +54,15 @@
                         <tr>
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $data->style_no ?></td>
-                            <td><?php echo $data->product.'/'.$data->customer ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?php echo $data->product.' / '.$data->customer ?></td>
+                            <td><?php echo $data->cons ?></td>
+                            <td><?php echo $data->takttime ?></td>
+                            <td><?php echo $data->cust_demand ?></td>
+                            <td><?php echo date('d-M-Y', strtotime($data->psd)) ?></td>
+                            <td><?php echo date('d-M-Y', strtotime($data->ped)) ?></td>
                             <td>                            
                                 <button type="button" class="btn btn-xs btn-success" onclick="get('<?php echo $data->id ?>')"><i class="fas fa-edit"></i></button>
-                                <a href="<?php echo base_url('users/delete/'.$data->id) ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure ?')"><i class="fas fa-trash"></i></a>                            
+                                <a href="<?php echo base_url('main/delete/'.$data->id) ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure ?')"><i class="fas fa-trash"></i></a>                            
                             </td>
                         </tr>
                       <?php } ?>
@@ -83,7 +85,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?php echo form_open('main/add'); ?>
+                <form id="form">
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Style Number</label>
                     <div class="col-sm-9">
@@ -95,7 +97,7 @@
                     <div class="col-sm-9">
                         <select name="product" class="form-control select2">
                             <option value="Bra">Bra</option>
-                            <option value="Brief/Panty">Brief/Panty</option>
+                            <option value="Panty">Panty</option>
                             <option value="Apparel">Apparel</option>
                         </select>
                     </div>
@@ -109,33 +111,50 @@
                  <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Cons./pcs</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" name="cpp" placeholder="Consumption per Pcs">
+                        <input type="text" class="form-control form-control-sm" name="cons" placeholder="Consumption per Pcs">
                     </div>
                 </div> 
                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Takt Time</label>
+                    <label class="col-sm-3 col-form-label">Cust Demand</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" name="takttime" placeholder="Takt Time">
-                    </div>
-                </div> 
-                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Cust. on Demand</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" name="cod" placeholder="Customer on Demand">
+                      <div class="input-group input-group-sm">
+                          <input type="number" min="0" name="cust_demand" onfocusout="taktime()" class="form-control form-control-sm">
+                          <div class="input-group-append">
+                            <span class="input-group-text">/ Day</span>
+                          </div>
+                        </div>
                     </div>
                 </div> 
                  <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Available Time</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" name="at" placeholder="Available Time">
+                        <input type="text" readonly="" value="56880 second" class="form-control form-control-sm" name="at" placeholder="Available Time">
+                    </div>
+                </div> 
+                 <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Takt Time</label>
+                    <div class="col-sm-9">
+                        <input type="text" readonly="" class="form-control form-control-sm" name="takttime" placeholder="Takt Time">
+                    </div>
+                </div> 
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">PSD</label>
+                    <div class="col-sm-9">
+                      <input type="date" class="form-control form-control-sm"  name="psd">
+                    </div>
+                </div>                            
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">PED</label>
+                    <div class="col-sm-9">
+                      <input type="date" class="form-control form-control-sm"  name="ped">
                     </div>
                 </div>                            
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
             </div>
-            <?php echo form_close(); ?>
+            </form>
         </div>
     </div>
 </div>
@@ -143,7 +162,82 @@
 
 
 <script>
-    function add() {
-        $('#modal-default').modal('show');
+    function taktime() {
+       var sub1 = $('[name="cust_demand"]').val();        
+        var hasil = 56880 / sub1;
+        $('[name="takttime"]').val(parseFloat(hasil).toFixed(2));  
     }
+
+    var save_method; 
+    var table;
+    var gid;
+    function add()
+    {
+      save_method = 'add';
+      $('.modal-title').text('Add Main Information'); // Set title to Bootstrap modal title      
+      $('#form')[0].reset(); // reset form on modals
+      $('#modal-default').modal('show'); // show bootstrap modal      
+
+    }
+
+    function get(id)
+    {
+      save_method = 'update';
+      gid = id;
+      $('#form')[0].reset(); // reset form on modals
+
+      //Ajax Load data from ajax
+      $.ajax({
+        url : "<?php echo site_url('index.php/main/get')?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+            // $('#kabkot').trigger('change');  
+            $('[name="style"]').val(data.style_no);            
+            $('[name="product"]').val(data.product);            
+            $('[name="product"]').trigger('change');            
+            $('[name="customer"]').val(data.customer);            
+            $('[name="cons"]').val(data.cons);            
+            $('[name="cust_demand"]').val(data.cust_demand);            
+            $('[name="takttime"]').val(data.takttime);            
+            $('[name="psd"]').val(data.psd);            
+            $('[name="ped"]').val(data.ped);            
+            $('#modal-default').modal('show'); // show bootstrap modal when complete loaded
+            $('.modal-title').text('Edit Main Information'); // Set title to Bootstrap modal title
+
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            alert('Error get data from ajax');
+        }
+      });
+    }
+
+    function save(){
+      var url;      
+      if(save_method == 'add'){
+          url = "<?php echo site_url('index.php/main/add')?>";          
+      }else{          
+          url = "<?php echo site_url('index.php/main/edit/')?>" + gid;         
+      }    
+       // ajax adding data to database
+          $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#form').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+               //if success close modal and reload ajax table
+               $('#modal-default').modal('hide');
+               location.reload();// for reload a page
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding / update data');
+            }
+        });
+      }    
+
 </script>

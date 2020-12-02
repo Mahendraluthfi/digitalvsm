@@ -9,6 +9,7 @@ class Users extends CI_Controller {
 		if (empty($this->session->userdata('vsm_epf'))) {
 			redirect('login','refresh');
 		}
+		$this->load->model('Minventory');
 	}
 
 	public function index()
@@ -55,6 +56,47 @@ class Users extends CI_Controller {
 		redirect('users','refresh');
 	}
 
+	public function item()
+	{
+		$data['content'] = 'item';
+		$data['get'] = $this->db->get('item')->result();
+		$get = $this->Minventory->dist_item()->result();
+		foreach ($get as $key => $value) {
+			$value->arrayitem = $this->db->get_where('have_item',array('department' => $value->dpt))->result();
+		}
+		$data['get2'] = $get;
+		$this->load->view('index', $data);
+	}
+
+	public function add_item()
+	{
+		$this->db->insert('item', array('item' => strtoupper($this->input->post('item'))));
+		redirect('users/item','refresh');
+	}
+
+	public function del_item($id)
+	{
+		$this->db->where('id_item', $id);
+		$this->db->delete('item');
+		redirect('users/item','refresh');
+	}
+
+	public function item_has()
+	{
+		$this->db->insert('have_item', array(
+			'department' => $this->input->post('department'),
+			'item' => $this->input->post('item'),
+		));
+
+		redirect('users/item','refresh');
+	}
+
+	public function del_have_item($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('have_item');
+		redirect('users/item','refresh');
+	}
 }
 
 /* End of file Users.php */

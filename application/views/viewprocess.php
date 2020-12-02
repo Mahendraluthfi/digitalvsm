@@ -86,7 +86,8 @@
                                   <tr>
                                       <td>8</td>
                                       <td>Overall Process Rate/Beat (Full Takt)</td>
-                                      <td><?php echo $proc->input8 ?></td>
+                                      <td <?php if($main->takttime < $proc->input8){echo "class='bg-danger text-white'";} ?>
+                                      ><?php echo $proc->input8 ?></td>
                                   </tr>
                                   <tr>
                                       <td colspan="3" class="bg-secondary"></td>
