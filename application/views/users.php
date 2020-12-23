@@ -114,6 +114,7 @@
                             <option value="IE-WS">IE-WS</option>
                             <option value="MECHANIC">MECHANIC</option>
                             <option value="SUPPLIER">SUPPLIER</option>
+                            <option value="MANAGER">MANAGER</option>
                         </select>
                     <p></p>
                     <span class="text-danger"><i>* EPF Number is current default password.</i></span>
@@ -176,6 +177,7 @@
                             <option value="IE-WS">IE-WS</option>
                             <option value="MECHANIC">MECHANIC</option>
                             <option value="SUPPLIER">SUPPLIER</option>
+                            <option value="MANAGER">MANAGER</option>
                         </select>
                     <p></p>
                     <span class="text-danger"><i>* EPF Number is current default password.</i></span>

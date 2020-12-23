@@ -116,6 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <?php } ?>
+          <?php if($this->session->userdata('vsm_department') !== 'MANAGER' ){ ?>
           <li class="nav-item">
             <a href="<?php echo base_url('preqco') ?>" class="nav-link <?php if($this->uri->segment(1) == "preqco"){echo "active";} ?>">
               <i class="nav-icon fas fa-random"></i><p>Extended QCO</p>
@@ -131,6 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-info"></i><p>Information</p>
             </a>
           </li>
+          <?php } ?>
           <?php if($this->session->userdata('vsm_department') == "MOS"){ ?>                  
           <li class="nav-item">
             <a href="<?php echo base_url('users') ?>" class="nav-link <?php if($this->uri->segment(1) == "users"){echo "active";} ?>">

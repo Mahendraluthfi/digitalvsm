@@ -675,7 +675,7 @@ border-top: 1px solid black;
                         </div>            
                         <div class="form-group row text-danger">
                             <label class="col-5">VA %</label>
-                            <label class="col-7">: <b><?php echo number_format($green/$blue,8) ?> %</b></label>
+                            <label class="col-7">: <b><?php if($blue !== 0){echo number_format($green/$blue,8);} ?> %</b></label>
                         </div>                    
                 </div>  
             </div>   

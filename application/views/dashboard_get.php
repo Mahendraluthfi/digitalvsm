@@ -104,6 +104,12 @@ border-top: 1px solid black;
         </div>
       </div> -->
       <div class="row">
+        <div class="col-12 text-center">
+          <h6>MAS Sumbiri Value Stream Map 2020</h6>
+          <h6>Style <?php echo $main->style_no ?></h6>
+        </div>
+      </div>
+      <div class="row">
         <!-- <div class="col-md-1 col-lg-1" style="padding: 0px;">
             <div class="card">
               <div class="card-body bg-light">
@@ -676,7 +682,7 @@ border-top: 1px solid black;
                         </div>            
                         <div class="form-group row text-warning">
                             <label class="col-5">VA %</label>
-                            <label class="col-7">: <b><?php echo number_format($green/$blue,8) ?> %</b></label>
+                            <label class="col-7">: <b><?php if($blue !== 0){echo number_format($green/$blue,8);} ?> %</b></label>
                         </div>                    
                 </div>  
             </div>    
